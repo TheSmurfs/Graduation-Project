@@ -1,0 +1,23 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\75210\Desktop\机器人大赛\1\shiyan.uvproj
+Project File Date:  05/09/2017
+
+<h2>Output:</h2>
+compiling shiyan.c...
+SHIYAN.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+shiyan.c - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=11.0 xdata=0 code=220
+"shiyan" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling shiyan.c...
+SHIYAN.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+linking...
+Program Size: data=11.0 xdata=0 code=220
+"shiyan" - 0 Error(s), 1 Warning(s).

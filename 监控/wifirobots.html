@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head profile="http://gmpg.org/xfn/11">
+	<meta charset="UTF-8" />
+		<title>Serial 智能机器人教育</title>
+		<link rel="stylesheet" href="css/main.css" type="text/css" />
+		<script>window.dhx_globalImgPath = "imgs/";</script>
+		<script  src="jsp/dhtmlxcommon.js"></script>
+		<script  src="jsp/dhtmlxslider.js"></script>
+		<script  src="jsp/dhtmlxslider_start.js"></script>
+		<script language="javascript" type="text/javascript">
+			var keydown=false;
+			
+			//发送
+			function sendSer(value){
+				var controlHost=document.getElementById("controlHost").value;
+				document.getElementById("ser").src="http://"+controlHost+"/cgi-bin/robotdriver?"+value;	
+				}
+			
+			//动作
+			function stopMoving(){
+				document.getElementById("middle_left_control_image_top_middle").style.backgroundImage="url(images/anniu_02_1.png)";
+				document.getElementById("middle_left_control_image_middle_left").style.backgroundImage="url(images/anniu_04_1.png)";
+				document.getElementById("middle_left_control_image_middle_right").style.backgroundImage="url(images/anniu_06_1.png)";
+				document.getElementById("middle_left_control_image_bottom_middle").style.backgroundImage="url(images/anniu_08_1.png)";
+				sendSer('C00');
+			}
+			function moveForward(){
+				document.getElementById("middle_left_control_image_top_middle").style.backgroundImage="url(images/anniu_02_2.png)";
+				sendSer('C01');
+			}
+			function turnLeft(){
+				document.getElementById("middle_left_control_image_middle_left").style.backgroundImage="url(images/anniu_04_2.png)";
+				sendSer('C03');
+			}
+			function moveBack(){
+				document.getElementById("middle_left_control_image_bottom_middle").style.backgroundImage="url(images/anniu_08_2.png)";
+				sendSer('C02');
+			}
+			function turnRight(){
+				document.getElementById("middle_left_control_image_middle_right").style.backgroundImage="url(images/anniu_06_2.png)";
+				sendSer('C04');
+			}
+			
+			//按键按下
+			function checkKeyDown(evt) {
+				var evt = evt ? evt : (window.event ? window.event : null); //区分IE和FF来得到event
+				var code = evt.which ? evt.which :evt.keyCode; //区分IE和FF来得到 event.keyCode 或 event.which
+				//alert(code); 测试键码
+				if(!keydown){
+					if(code==87) //W
+						moveForward();
+					else if(code==65) //A
+						turnLeft();
+					else if(code==83) //S
+						moveBack();
+					else if(code==68) //D
+						turnRight();
+					else if(code==38) //up
+						SteeringGearUp();
+					else if(code==40) //down
+						SteeringGearDown();
+					
+					keydown=true;
+				}
+			}
+			
+			//视频
+			function connectVideo(){
+				document.getElementById("videoFrame").style.visibility="visible";
+				var videoHost=document.getElementById("videoHost").value;
+				document.getElementById("videoFrame").src=videoHost;
+			}
+			function breakOffVideo(){
+				document.getElementById("videoFrame").style.visibility="hidden";
+				//document.getElementById("videoFrame").src="";
+				//document.getElementById("videoFrame").style.backgroundImage="url(images/middle5.jpg)";
+			}
+					
+			//按键松开
+			function checkKeyUp(evt) {
+				keydown=false;
+				var evt = evt ? evt : (window.event ? window.event : null);
+				var code = evt.which ? evt.which :evt.keyCode;
+				if(code==87 || code==65 || code==83 || code==68 || code==38 || code==40)
+					stopMoving();
+			}
+			
+			//显示
+			function show(){
+				document.getElementById("videoFrame").src="http://192.168.1.1:8080/?action=stream";
+				document.getElementById("middle_left_control_image_top_middle").style.backgroundImage="url(images/anniu_02_1.png)";
+				document.getElementById("middle_left_control_image_middle_left").style.backgroundImage="url(images/anniu_04_1.png)";
+				document.getElementById("middle_left_control_image_middle_right").style.backgroundImage="url(images/anniu_06_1.png)";
+				document.getElementById("middle_left_control_image_bottom_middle").style.backgroundImage="url(images/anniu_08_1.png)";
+				document.getElementById("middle_middle_content_src_frame").style.visibility="visible";
+			}
+			
+			
+			function motor1(){
+				sendSer('C1'+document.getElementById("motor1").innerHTML);
+			}
+			function motor2(){
+				sendSer('C2'+document.getElementById("motor2").innerHTML);
+			}
+			function motor3(){
+				sendSer('C3'+document.getElementById("motor3").innerHTML);
+			}
+			function motor4(){
+				sendSer('C4'+document.getElementById("motor4").innerHTML);
+			}
+			function motor5(){
+				sendSer('C5'+document.getElementById("motor5").innerHTML);
+			}
+			function motor6(){
+				sendSer('C6'+document.getElementById("motor6").innerHTML);
+			}
+			function motor7(){
+				sendSer('C7'+document.getElementById("motor7").innerHTML);
+			}
+			function motor8(){
+				sendSer('C8'+document.getElementById("motor8").innerHTML);
+			}
+			function sendall(){
+				motor1();
+				motor2();
+				motor3();
+				motor4();
+				motor5();
+				motor6();
+				motor7();
+				motor8();
+			}
+
+		</script>
+
+	</head>
+	<body onLoad="show()" onkeydown="checkKeyDown(event)" onkeyup="checkKeyUp(event)">
+		<img id="ser" width="1" height="1">
+		<center>
+			<div id="content">
+				<div id="header">
+					<div id="header_title">
+						<div id="header_title_left"></div>
+						<div id="header_title_content">
+							<div id="header_title_content_logo">
+								<img src="images/image_logo.png" class="logowe">
+							</div>
+						</div>
+						<div id="header_title_right"></div>
+					</div>
+				</div>
+				<div id="middle">
+					<div id="middle_left">
+						<div id="middle_left_set"></div>
+						<div id="middle_left_control_image">
+							<div id="middle_left_control_image_top">
+								<div id="middle_left_control_image_top_left"></div>
+								<div id="middle_left_control_image_top_middle" style="cursor:pointer;" onMouseDown="moveForward();" onMouseUp="stopMoving();"><br/><br/><font style="font-size:20px;"><b></b></font></div>
+								<div id="middle_left_control_image_top_right"></div>
+							</div>
+							<div id="middle_left_control_image_middle">
+								<div id="middle_left_control_image_middle_left" style="cursor:pointer;" onMouseDown="turnLeft();" onMouseUp="stopMoving();"><br/><font style="font-size:20px; margin-right:-30px;"><b></b></font></div>
+								<div id="middle_left_control_image_middle_middle"></div>
+								<div id="middle_left_control_image_middle_right" style="cursor:pointer;" onMouseDown="turnRight();" onMouseUp="stopMoving();"><br/><font style="font-size:20px; margin-left:-30px;"><b></b></font></div>
+							</div>
+							<div id="middle_left_control_image_bottom">
+								<div id="middle_left_control_image_bottom_left"></div>
+								<div id="middle_left_control_image_bottom_middle" style="cursor:pointer;" onMouseDown="moveBack();" onMouseUp="stopMoving();"><font style="font-size:20px;"><b></b></font></div>
+								<div id="middle_left_control_image_bottom_right"></div>
+							</div>
+						</div>
+					</div>
+					<div id="middle_middle">
+						<div id="middle_middle_src">
+							<div id="middle_middle_content_src_frame">
+								
+							<img id="videoFrame" width="554px" height="440px" src="http://192.168.1.1:2001" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"></img>
+								</div>
+							<div id="middle_middle_content_src_address">
+								视频地址:<input type="input" id="videoHost" value="http://192.168.1.1:8080/?action=stream" size="40" />
+								
+								<input type="button" onClick="connectVideo()" style="cursor:hand" value="连接" />
+								<input type="button" onClick="breakOffVideo()" style="cursor:hand" value="断开" />
+								
+							</div>
+							<div id="middle_middle_content_src_ip">
+								控制地址:<input type="input" id="controlHost" value="192.168.1.1" size="16" />
+								
+							</div>
+						</div>
+						
+							
+							
+					</div>
+					<div id="middle_right">
+						<div id="middle_right_src">
+							<div id="middle_right_content_src_top">
+								<div id="slider-up">
+									<div id="slider-one">
+										<div id="slider-one-name" class="slider-name"><font color="#8e8e8e">舵机1</font></div>
+										<div id="slider-one-image" class="slider-image"><label id="sliderBox1"></label></div>
+										<div id="slider-one-value" class="slider-value"><label id="motor1"></label></div>
+									</div>
+									<div id="slider-two">
+										<div id="slider-two-name" class="slider-name"><font color="#8e8e8e">舵机2</font></div>
+										<div id="slider-two-image" class="slider-image"><label id="sliderBox2"></label></div>
+										<div id="slider-two-value" class="slider-value"><label id="motor2"></label></div>
+									</div>
+									<div id="slider-three">
+										<div id="slider-three-name" class="slider-name"><font color="#8e8e8e">舵机3</font></div>
+										<div id="slider-three-image" class="slider-image"><label id="sliderBox3"></label></div>
+										<div id="slider-three-value" class="slider-value"><label id="motor3"></label></div>
+									</div>
+									<div id="slider-four">
+										<div id="slider-four-name" class="slider-name"><font color="#8e8e8e">舵机4</font></font></div>
+										<div id="slider-four-image" class="slider-image"><label id="sliderBox4"></label></div>
+										<div id="slider-four-value" class="slider-value"><label id="motor4"></label></div>
+									</div>
+								</div>
+							</div>
+							<div id="middle_right_content_src_bottom">
+								<div id="slider-bottom">
+									<div id="slider-five">
+										<div id="slider-five-name" class="slider-name"><font color="#8e8e8e">舵机5</font></div>
+										<div id="slider-five-image" class="slider-image"><label id="sliderBox5"></label></div>
+										<div id="slider-five-value" class="slider-value"><label id="motor5"></label></div>
+									</div>
+									<div id="slider-six">
+										<div id="slider-six-name" class="slider-name"><font color="#8e8e8e">舵机6</font></div>
+										<div id="slider-six-image" class="slider-image"><label id="sliderBox6"></label></div>
+										<div id="slider-six-value" class="slider-value"><label id="motor6"></label></div>
+									</div>
+									<div id="slider-seven">
+										<div id="slider-seven-name" class="slider-name"><font color="#8e8e8e">舵机7</font></div>
+										<div id="slider-seven-image" class="slider-image"><label id="sliderBox7"></label></div>
+										<div id="slider-seven-value" class="slider-value"><label id="motor7"></label></div>
+									</div>
+									<div id="slider-eight">
+										<div id="slider-eight-name" class="slider-name"><font color="#8e8e8e">舵机8</font></div>
+										<div id="slider-eight-image" class="slider-image"><label id="sliderBox8"></label></div>
+										<div id="slider-eight-value" class="slider-value"><label id="motor8"></label></div>
+									</div>
+								</div>
+							</div>
+							<script>
+								var slider1 = new dhtmlxSlider("sliderBox1", 100, "ball", true, 0, 180, 0);
+								slider1.attachEvent("onChange",motor1);
+								slider1.linkTo('motor1');
+								slider1.init();
+								var slider2 = new dhtmlxSlider("sliderBox2", 100, "ball", true, 0, 180, 0);
+								slider2.attachEvent("onChange",motor2);
+								slider2.linkTo('motor2');
+								slider2.init();
+								var slider3 = new dhtmlxSlider("sliderBox3", 100, "ball", true, 0, 180, 0);
+								slider3.attachEvent("onChange",motor3);
+								slider3.linkTo('motor3');
+								slider3.init();
+								var slider4 = new dhtmlxSlider("sliderBox4", 100, "ball", true, 0, 180, 0);
+								slider4.attachEvent("onChange",motor4);
+								slider4.linkTo('motor4');
+								slider4.init();
+								var slider5 = new dhtmlxSlider("sliderBox5", 100, "ball", true, 0, 180, 0);
+								slider5.attachEvent("onChange",motor5);
+								slider5.linkTo('motor5');
+								slider5.init();
+								var slider6 = new dhtmlxSlider("sliderBox6", 100, "ball", true, 0, 180, 0);
+								slider6.attachEvent("onChange",motor6);
+								slider6.linkTo('motor6');
+								slider6.init();
+								var slider7 = new dhtmlxSlider("sliderBox7", 100, "ball", true, 0, 180, 0);
+								slider7.attachEvent("onChange",motor7);
+								slider7.linkTo('motor7');
+								slider7.init();
+								var slider8 = new dhtmlxSlider("sliderBox8", 100, "ball", true, 0, 180, 0);
+								slider8.attachEvent("onChange",motor8);
+								slider8.linkTo('motor8');
+								slider8.init();
+							</script>
+							
+						</div>
+					</div>
+				</div>
+				<div id="footer">
+					<div id="footer_left"></div>
+					<div id="footer_center">
+						<div id="footer_center_font">
+							<font><hr>qgnix.cn  <br/> Copyright 2016 Serial团队</b></font>
+						</div>
+					</div>
+					<div id="footer_right"></div>
+				</div>
+			</div>
+		</center>
+	</body>
+</html>

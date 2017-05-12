@@ -1,0 +1,263 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/09/2017  19:32:45  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, shiyan.obj TO shiyan RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  shiyan.obj (SHIYAN)
+
+
+LINK MAP OF MODULE:  shiyan (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?SHIYAN
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0078H     UNIT         ?PR?MAIN?SHIYAN
+            CODE    0878H     0011H     UNIT         ?PR?QIANJIN?SHIYAN
+            CODE    0889H     0011H     UNIT         ?PR?TURN_LEFT?SHIYAN
+            CODE    089AH     0011H     UNIT         ?PR?TURN_RIGHT?SHIYAN
+            CODE    08ABH     0011H     UNIT         ?PR?TURN_STOP?SHIYAN
+            CODE    08BCH     0011H     UNIT         ?PR?TURN_DOWN?SHIYAN
+            CODE    08CDH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   shiyan (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?SHIYAN
+
+?PR?MAIN?SHIYAN
+  +--> ?PR?TURN_STOP?SHIYAN
+  +--> ?PR?QIANJIN?SHIYAN
+  +--> ?PR?TURN_LEFT?SHIYAN
+  +--> ?PR?TURN_RIGHT?SHIYAN
+  +--> ?PR?TURN_DOWN?SHIYAN
+
+
+
+SYMBOL TABLE OF MODULE:  shiyan (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/09/2017  19:32:45  PAGE 2
+
+
+
+  -------         MODULE        ?C_STARTUP
+  C:08CDH         SEGMENT       ?C_C51STARTUP
+  I:000AH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:08D0H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:08CDH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:08CDH         LINE#         133
+  C:08CFH         LINE#         134
+  C:08D0H         LINE#         135
+  C:08D1H         LINE#         136
+  C:08D3H         LINE#         185
+  C:08D6H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        SHIYAN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:0080H.7       PUBLIC        Q2
+  D:00B0H         PUBLIC        P3
+  B:00A0H.3       PUBLIC        X1
+  B:00A0H.4       PUBLIC        X2
+  B:00A0H.5       PUBLIC        X3
+  B:00A0H.6       PUBLIC        X4
+  B:00A0H.2       PUBLIC        BEEP
+  B:00B0H.1       PUBLIC        XJ
+  C:0800H         PUBLIC        main
+  B:0090H.0       PUBLIC        IN1
+  B:0090H.1       PUBLIC        IN2
+  B:0090H.2       PUBLIC        IN3
+  B:0090H.3       PUBLIC        IN4
+  B:0090H.4       PUBLIC        IN5
+  C:089AH         PUBLIC        turn_right
+  B:0090H.5       PUBLIC        IN6
+  B:0090H.6       PUBLIC        IN7
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/09/2017  19:32:45  PAGE 3
+
+
+  B:0090H.7       PUBLIC        IN8
+  C:0889H         PUBLIC        turn_left
+  C:08BCH         PUBLIC        turn_down
+  C:0878H         PUBLIC        qianjin
+  D:0008H         PUBLIC        t
+  C:08ABH         PUBLIC        turn_stop
+  B:0080H.0       PUBLIC        F1
+  B:0080H.1       PUBLIC        F2
+  B:0080H.2       PUBLIC        F3
+  -------         PROC          QIANJIN
+  C:0878H         LINE#         28
+  C:0878H         LINE#         29
+  C:0878H         LINE#         30
+  C:087AH         LINE#         31
+  C:087CH         LINE#         32
+  C:087EH         LINE#         33
+  C:0880H         LINE#         34
+  C:0882H         LINE#         35
+  C:0884H         LINE#         36
+  C:0886H         LINE#         37
+  C:0888H         LINE#         39
+  -------         ENDPROC       QIANJIN
+  -------         PROC          TURN_LEFT
+  C:0889H         LINE#         41
+  C:0889H         LINE#         42
+  C:0889H         LINE#         43
+  C:088BH         LINE#         44
+  C:088DH         LINE#         45
+  C:088FH         LINE#         46
+  C:0891H         LINE#         47
+  C:0893H         LINE#         48
+  C:0895H         LINE#         49
+  C:0897H         LINE#         50
+  C:0899H         LINE#         52
+  -------         ENDPROC       TURN_LEFT
+  -------         PROC          TURN_RIGHT
+  C:089AH         LINE#         55
+  C:089AH         LINE#         56
+  C:089AH         LINE#         57
+  C:089CH         LINE#         58
+  C:089EH         LINE#         59
+  C:08A0H         LINE#         60
+  C:08A2H         LINE#         61
+  C:08A4H         LINE#         62
+  C:08A6H         LINE#         63
+  C:08A8H         LINE#         64
+  C:08AAH         LINE#         66
+  -------         ENDPROC       TURN_RIGHT
+  -------         PROC          TURN_STOP
+  C:08ABH         LINE#         68
+  C:08ABH         LINE#         69
+  C:08ABH         LINE#         70
+  C:08ADH         LINE#         71
+  C:08AFH         LINE#         72
+  C:08B1H         LINE#         73
+  C:08B3H         LINE#         74
+  C:08B5H         LINE#         75
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/09/2017  19:32:45  PAGE 4
+
+
+  C:08B7H         LINE#         76
+  C:08B9H         LINE#         77
+  C:08BBH         LINE#         79
+  -------         ENDPROC       TURN_STOP
+  -------         PROC          TURN_DOWN
+  C:08BCH         LINE#         81
+  C:08BCH         LINE#         82
+  C:08BCH         LINE#         83
+  C:08BEH         LINE#         84
+  C:08C0H         LINE#         85
+  C:08C2H         LINE#         86
+  C:08C4H         LINE#         87
+  C:08C6H         LINE#         88
+  C:08C8H         LINE#         89
+  C:08CAH         LINE#         90
+  C:08CCH         LINE#         92
+  -------         ENDPROC       TURN_DOWN
+  -------         PROC          MAIN
+  C:0800H         LINE#         94
+  C:0800H         LINE#         95
+  C:0800H         LINE#         97
+  C:0803H         LINE#         98
+  C:0805H         LINE#         99
+  C:0807H         LINE#         100
+  C:080AH         LINE#         103
+  C:080AH         LINE#         104
+  C:080DH         LINE#         105
+  C:0811H         LINE#         106
+  C:0813H         LINE#         107
+  C:0816H         LINE#         108
+  C:0816H         LINE#         109
+  C:081FH         LINE#         110
+  C:081FH         LINE#         111
+  C:0822H         LINE#         113
+  C:0822H         LINE#         114
+  C:082BH         LINE#         115
+  C:082BH         LINE#         116
+  C:082EH         LINE#         118
+  C:082EH         LINE#         119
+  C:0837H         LINE#         120
+  C:0837H         LINE#         121
+  C:083AH         LINE#         123
+  C:083AH         LINE#         124
+  C:0843H         LINE#         125
+  C:0843H         LINE#         126
+  C:0846H         LINE#         128
+  C:0846H         LINE#         129
+  C:084FH         LINE#         130
+  C:084FH         LINE#         131
+  C:0852H         LINE#         133
+  C:0852H         LINE#         134
+  C:0852H         LINE#         135
+  C:0855H         LINE#         136
+  C:0855H         LINE#         138
+  C:0861H         LINE#         139
+  C:0861H         LINE#         140
+  C:0864H         LINE#         142
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/09/2017  19:32:45  PAGE 5
+
+
+  C:0864H         LINE#         143
+  C:086AH         LINE#         144
+  C:086AH         LINE#         145
+  C:086DH         LINE#         147
+  C:086DH         LINE#         148
+  C:0873H         LINE#         149
+  C:0873H         LINE#         150
+  C:0876H         LINE#         152
+  C:0876H         LINE#         154
+  C:0876H         LINE#         159
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        SHIYAN
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00DCH BYTE (10%) *
+******************************************************************************
+
+Program Size: data=11.0 xdata=0 code=220
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
